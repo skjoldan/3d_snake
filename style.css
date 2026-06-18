@@ -163,3 +163,114 @@ button:active {
   color: #4dffd2;
   font-weight: 700;
 }
+
+/* ---- Touch controls (mobile) ---- */
+#touchControls,
+#pauseButton,
+.touch-only {
+  display: none; /* shown only on touch devices via body.touch */
+}
+
+body.touch .desktop-only {
+  display: none;
+}
+
+body.touch .touch-only {
+  display: inline-block;
+}
+
+body.touch #touchControls {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+  pointer-events: none; /* let camera drag pass through; buttons re-enable below */
+}
+
+body.touch #pauseButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 14px;
+  right: 16px;
+  z-index: 16;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  border-radius: 50%;
+  color: #9fd0ff;
+  background: rgba(10, 16, 30, 0.55);
+  border: 1px solid rgba(88, 166, 255, 0.4);
+  box-shadow: none;
+}
+
+.dpad,
+.altpad {
+  position: absolute;
+  bottom: max(28px, env(safe-area-inset-bottom));
+}
+
+.dpad {
+  left: max(24px, env(safe-area-inset-left));
+  display: grid;
+  grid-template-columns: repeat(3, 58px);
+  grid-template-rows: repeat(3, 58px);
+  gap: 6px;
+}
+
+.altpad {
+  right: max(24px, env(safe-area-inset-right));
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tc-btn {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: #cdeaff;
+  background: rgba(12, 20, 36, 0.5);
+  border: 1px solid rgba(88, 166, 255, 0.45);
+  border-radius: 14px;
+  box-shadow: 0 0 18px rgba(0, 60, 90, 0.25);
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: transform 0.06s ease, background 0.06s ease;
+}
+
+.tc-btn:active {
+  transform: scale(0.92);
+  background: rgba(77, 255, 210, 0.25);
+  border-color: #4dffd2;
+}
+
+.dpad-up { grid-area: 1 / 2; }
+.dpad-left { grid-area: 2 / 1; }
+.dpad-right { grid-area: 2 / 3; }
+.dpad-down { grid-area: 3 / 2; }
+
+.altpad .tc-btn {
+  width: 64px;
+  height: 64px;
+  font-size: 20px;
+  border-radius: 50%;
+}
+
+.altpad .tc-btn span {
+  font-size: 11px;
+  letter-spacing: 1px;
+  opacity: 0.85;
+}

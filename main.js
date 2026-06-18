@@ -342,6 +342,25 @@ window.addEventListener("keydown", (e) => {
 document.getElementById("startButton").addEventListener("click", startGame);
 document.getElementById("resumeButton").addEventListener("click", togglePause);
 
+// ---- Touch / mobile controls ----
+const isTouch =
+  window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window;
+if (isTouch) document.body.classList.add("touch");
+
+// The on-screen buttons reuse the same camera-relative steer() as the keyboard.
+document.querySelectorAll("#touchControls [data-dir]").forEach((btn) => {
+  const intent = btn.getAttribute("data-dir");
+  btn.addEventListener("pointerdown", (e) => {
+    e.preventDefault();
+    if (running && !paused) steer(intent);
+  });
+});
+
+document.getElementById("pauseButton").addEventListener("pointerdown", (e) => {
+  e.preventDefault();
+  togglePause();
+});
+
 window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();

@@ -16,12 +16,17 @@
     <div class="panel">
       <h1>3D&nbsp;SNAKE</h1>
       <p class="tagline">Nokia classic, lost in three dimensions.</p>
-      <div class="controls">
+      <div class="controls desktop-only">
         <div class="ctrl-row"><span class="keys">W&nbsp;A&nbsp;S&nbsp;D</span><span>move horizontally</span></div>
         <div class="ctrl-row"><span class="keys">Q&nbsp;/&nbsp;E</span><span>move down / up</span></div>
         <div class="ctrl-row"><span class="keys">Arrows</span><span>also steer</span></div>
         <div class="ctrl-row"><span class="keys">Drag</span><span>rotate the camera</span></div>
         <div class="ctrl-row"><span class="keys">P</span><span>pause</span></div>
+      </div>
+      <div class="controls touch-only">
+        <div class="ctrl-row"><span class="keys">◀ ▲ ▼ ▶</span><span>steer in the plane</span></div>
+        <div class="ctrl-row"><span class="keys">UP / DN</span><span>change height</span></div>
+        <div class="ctrl-row"><span class="keys">Drag</span><span>rotate the camera</span></div>
       </div>
       <button id="startButton">START</button>
       <p class="hint">Steering is relative to the camera — turn the view to find your bearings.</p>
@@ -34,6 +39,21 @@
       <button id="resumeButton">RESUME</button>
     </div>
   </div>
+
+  <!-- On-screen controls for touch devices -->
+  <div id="touchControls" aria-hidden="true">
+    <div class="dpad">
+      <button class="tc-btn dpad-up" data-dir="forward" aria-label="Move forward">▲</button>
+      <button class="tc-btn dpad-left" data-dir="left" aria-label="Move left">◀</button>
+      <button class="tc-btn dpad-right" data-dir="right" aria-label="Move right">▶</button>
+      <button class="tc-btn dpad-down" data-dir="back" aria-label="Move back">▼</button>
+    </div>
+    <div class="altpad">
+      <button class="tc-btn alt-up" data-dir="up" aria-label="Move up">⏫<span>UP</span></button>
+      <button class="tc-btn alt-down" data-dir="down" aria-label="Move down">⏬<span>DN</span></button>
+    </div>
+  </div>
+  <button id="pauseButton" aria-label="Pause">⏸</button>
 
   <script type="importmap">
   {
