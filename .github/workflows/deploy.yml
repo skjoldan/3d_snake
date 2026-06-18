@@ -1,0 +1,46 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Deploy whenever the main branch changes
+  push:
+    branches: [main]
+  # Allow manual runs from the Actions tab
+  workflow_dispatch:
+
+# Permissions the GITHUB_TOKEN needs to publish to Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; newer pushes cancel in-progress ones
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        # enablement: true turns on GitHub Pages automatically on the first run,
+        # so there's nothing to toggle in the repo settings by hand.
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload site artifact
+        # The game is a static site living at the repo root, so upload everything.
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
