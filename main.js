@@ -4,7 +4,7 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 // ---------------------------------------------------------------------------
 // Configuration
 // ---------------------------------------------------------------------------
-const GRID = 11;                 // cells per side of the cubic arena
+const GRID = 17;                 // cells per side of the cubic arena
 const CELL = 1;                  // world units per cell
 const HALF = (GRID - 1) / 2;     // offset so the grid is centred on the origin
 const BASE_TICK = 240;           // ms between moves at the start
@@ -23,7 +23,8 @@ document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x05060a);
-scene.fog = new THREE.FogExp2(0x05060a, 0.035);
+// scale fog with the arena so the far walls stay as clear as in an 11-cell grid
+scene.fog = new THREE.FogExp2(0x05060a, 0.385 / (GRID * CELL));
 
 const camera = new THREE.PerspectiveCamera(
   55,
