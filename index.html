@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Snake</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="hud">
+    <div id="score">Score: <span id="scoreValue">0</span></div>
+    <div id="best">Best: <span id="bestValue">0</span></div>
+  </div>
+
+  <div id="overlay" class="overlay">
+    <div class="panel">
+      <h1>3D&nbsp;SNAKE</h1>
+      <p class="tagline">Nokia classic, lost in three dimensions.</p>
+      <div class="controls">
+        <div class="ctrl-row"><span class="keys">W&nbsp;A&nbsp;S&nbsp;D</span><span>move horizontally</span></div>
+        <div class="ctrl-row"><span class="keys">Q&nbsp;/&nbsp;E</span><span>move down / up</span></div>
+        <div class="ctrl-row"><span class="keys">Arrows</span><span>also steer</span></div>
+        <div class="ctrl-row"><span class="keys">Drag</span><span>rotate the camera</span></div>
+        <div class="ctrl-row"><span class="keys">P</span><span>pause</span></div>
+      </div>
+      <button id="startButton">START</button>
+      <p class="hint">Steering is relative to the camera — turn the view to find your bearings.</p>
+    </div>
+  </div>
+
+  <div id="pauseOverlay" class="overlay hidden">
+    <div class="panel small">
+      <h2>Paused</h2>
+      <button id="resumeButton">RESUME</button>
+    </div>
+  </div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
